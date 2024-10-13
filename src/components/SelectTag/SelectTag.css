@@ -1,0 +1,27 @@
+.select-container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .country-select {
+    font-size: 1rem;
+  }
+  
+  .country-option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .country-flag {
+    width: 25px;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
