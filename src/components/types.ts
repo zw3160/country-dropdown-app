@@ -16,3 +16,8 @@ export interface Country {
     flags: flags;
     currencies: currency[];
   };
+
+  export interface CountryRow {
+    value: string;
+    label: JSX.Element;
+  }

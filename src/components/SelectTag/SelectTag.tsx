@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import { useLocation } from 'wouter';
 import { useNavigate } from 'react-router-dom';
-import { Country } from '../types';
+import { Country, CountryRow } from '../types';
 import './SelectTag.css';  // קובץ עיצוב מותאם אישית
 
 const SelectTag: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([]);
-  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
-  const [location, setLocation] = useLocation();
+  const [options, setOptions] = useState<CountryRow[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,15 +20,8 @@ const SelectTag: React.FC = () => {
       });
   }, []);
 
-  const handleSelectCountry = (selectedCountry?: string) => {
-    const country = countries.find(c => c.name === selectedCountry);
-    if (country) {
-      setSelectedCountry(country);
-      navigate(`/${selectedCountry}`, { state: { country } });
-    }
-  };
-
-  const options = countries.map(country => ({
+useEffect(() => {
+  const rows = countries.map(country => ({
     value: country.name,
     label: (
       <div className="country-option">
@@ -43,6 +34,15 @@ const SelectTag: React.FC = () => {
       </div>
     ),
   }));
+setOptions(rows)
+}, [countries])
+
+  const handleSelectCountry = (e: CountryRow | null) => {
+    const country = countries.find(c => c.name === e?.value);
+    if (country) {
+      navigate(`/${e?.value}`, { state: { country } });
+    }
+  };
 
   return (
     <div className="select-container">
@@ -51,7 +51,7 @@ const SelectTag: React.FC = () => {
         options={options}
         isSearchable
         placeholder="Select a country..."
-        onChange={(e) => handleSelectCountry(e?.value)}
+        onChange={handleSelectCountry}
         className="country-select"
       />
     </div>

@@ -9,11 +9,8 @@ const CountryDetails: React.FC = () => {
 
   const { country } = location.state as { country: Country } || {};
 
-  if (!country) {
-    return <div>No country selected</div>;
-  }
-
   return (
+    country?
     <div className="country-details-container">
       <h2>{country.name}</h2>
       <img src={country.flags.png} alt={country.name} className="country-flag" />
@@ -28,7 +25,10 @@ const CountryDetails: React.FC = () => {
       <button className="back-button" onClick={() => navigate(-1)}>
         ← Back to Country Selection
       </button>
-    </div>
+    </div> :
+    <div className="country-details-container">
+        No country selected
+    </div>
   );
 };
 
