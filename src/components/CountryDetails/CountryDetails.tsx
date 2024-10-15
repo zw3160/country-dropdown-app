@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Country } from '../types';
-import './CountryDetails.css';  // קובץ עיצוב מותאם אישית
+import './CountryDetails.css'; 
 
 const CountryDetails: React.FC = () => {
   const location = useLocation();
