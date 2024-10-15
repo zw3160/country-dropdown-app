@@ -3,7 +3,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Country, CountryRow } from '../types';
-import './SelectTag.css';  // קובץ עיצוב מותאם אישית
+import './SelectTag.css'; 
 
 const SelectTag: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([]);
